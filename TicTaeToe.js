@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // function to show the winner message
     const showWinner = (winner) => {
         console.log(winner);
-        msg.textContent = `Congratulations ${winner.innerText} won`; // adding the winner text to the paragraph in message container
+        msg.textContent = `Congratulations ${winner} won`; // adding the winner text to the paragraph in message container
         msgContainer.classList.remove("hide"); // removing hide class so that message can  be shown
         disableBoxes(); // disabling boxes so that user use new game or reset buttons
     };
