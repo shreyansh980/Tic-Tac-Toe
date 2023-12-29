@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let newGameBtn = document.querySelector("#new-butt"); // new game button
     let msgContainer = document.querySelector(".msg-cont"); // container to show the message of winner
     let msg = document.querySelector("#msg"); // message of the winner
+    let oClick = document.getElementById("oClicksound");
+    let xClick = document.getElementById("xClicksound");
+    
 
     let turnO = true; //playerX, playerO
     let count = 0; //To Track Draw
@@ -41,10 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 //playerO
                 box.innerText = "O";
                 turnO = false;
+                oClick.play();
             } else {
                 //playerX
                 box.innerText = "X";
                 turnO = true;
+                xClick.play();
             }
             // disabling  the boxes so that after a turn it cant be changed
             box.disabled = true;
@@ -65,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         msg.innerText = `Game was a Draw.`;
         msgContainer.classList.remove("hide"); // removing the hide class so that the message can be shown
         disableBoxes(); // disabling the boxes so that player cant play without clicking the new or reset buttons
+        let drawSound = document.getElementById("Draw");
+   
+        drawSound.play();
     };
 
 
@@ -89,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // function to show the winner message
     const showWinner = (winner) => {
-        // console.log(winner);
+        console.log(winner);
         msg.textContent = `Congratulations ${winner} won`; // adding the winner text to the paragraph in message container
         msgContainer.classList.remove("hide"); // removing hide class so that message can  be shown
         disableBoxes(); // disabling boxes so that user use new game or reset buttons
@@ -106,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (pos1Val != "" && pos2Val != "" && pos3Val != "") {  // checking if the patterns are null or not
                 if (pos1Val === pos2Val && pos2Val === pos3Val) {   // if all the columns match then we got the winner
                     showWinner(pos1Val); 
-                    return true;
+                    return pos1Val;
                 }
             }
         }
